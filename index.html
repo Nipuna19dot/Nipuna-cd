@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+#addImageBtn {
+  font-size: 24px;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+#imageGallery img {
+  max-width: 200px;
+  margin: 10px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+</style>
+
+  <meta charset="UTF-8">
+  <title>Login | KAVI-MD</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Login Box -->
+  <div class="login-box">
+    <h2><marquee>KAVI-MD</marquee></h2>
+    <form onsubmit="checkLogin(event)">
+      <input type="text" id="username" placeholder="Username" required><br>
+      <input type="password" id="password" placeholder="Password" required><br>
+      <input type="submit" value="Login">
+    </form>
+  </div>
+
+  <!-- Business Page -->
+  <div class="business-page">
+    <div class="business-header">🎉 Welcome KAVI-MD 🎉</div>
+
+    <div class="card">
+      <h3>අපි ගැන</h3>
+      <p>අපගේ සේවාවන් ඔබට විශ්වාසය සහිතව ලබාදීමට කැපවෙමු.</p>
+    </div>
+
+    <div class="card">
+      <h3>WhatsApp Bot</h3>
+      <p>👇 පහත ලින්ක් එක ක්ලික් කරන්න:</p>
+      <a class="kavi-link" href="https://kavi-x-bot-b2093185b81d.herokuapp.com/" target="_blank">
+        👉 KAVI-X BOT වෙත යන්න
+      </a>
+    </div>
+
+    <div class="card">
+      <h3>සම්බන්ධ වන්න</h3>
+      <p>📞 දුරකථන:+94 70 212 8378</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+<div id="image-section">
+  <h2>Gallery</h2>
+  <button id="addImageBtn">+</button>
+  <input type="file" id="imageInput" accept="image/*" style="display: none;" />
+  <div id="imageGallery"></div>
+</div>
+
+<script>
+  const addBtn = document.getElementById('addImageBtn');
+  const imageInput = document.getElementById('imageInput');
+  const imageGallery = document.getElementById('imageGallery');
+
+  addBtn.addEventListener('click', () => {
+    imageInput.click();
+  });
+
+  imageInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        const img = document.createElement('img');
+        img.src = event.target.result;
+        imageGallery.appendChild(img);
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+</script>
+</body>
+</html>
